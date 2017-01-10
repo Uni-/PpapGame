@@ -8,6 +8,9 @@ public class InputHandResponse : MonoBehaviour
     private GameObject sceneDynamicContainer;
 
     [SerializeField]
+    public HandState HandSystem;
+
+    [SerializeField]
     Material WhiteShader;
     [SerializeField]
     Material RedShader;
@@ -33,6 +36,7 @@ public class InputHandResponse : MonoBehaviour
             if (mouse)
             {
                 relativeInputCoordinates.Add(position);
+                Debug.Log(position.ToString());
                 break;
             }
         }
@@ -41,7 +45,7 @@ public class InputHandResponse : MonoBehaviour
         {
             Touch touch = Input.GetTouch(i);
             relativeInputCoordinates.Add(new Vector3(touch.position.x, touch.position.y));
-            Debug.Log(touch);
+            Debug.Log(touch.position.ToString());
         }
 
         for (int i = 0; i < sceneDynamicContainer.transform.childCount; i++)
@@ -57,8 +61,19 @@ public class InputHandResponse : MonoBehaviour
             bool hitObjectExists = Physics.Raycast(ray.origin, ray.direction, out raycastHit);
             if (hitObjectExists)
             {
-                raycastHit.transform.gameObject.GetComponent<Renderer>().material = RedShader;
+                var hitGameObject = raycastHit.transform.gameObject;
+                hitGameObject.GetComponent<Renderer>().material = RedShader;
+                AddObjectToList(hitGameObject);
             }
         }
+    }
+
+    void AddObjectToList(GameObject pGameObject)
+    {
+        Debug.Log(pGameObject);
+        Debug.Log(pGameObject.GetComponent<ObjectPropertySet>());
+
+        ObjectPropertySet objectPropertySet = pGameObject.GetComponent<ObjectPropertySet>();
+        HandSystem.AddToHand(HandState.Type.Left, objectPropertySet);
     }
 }

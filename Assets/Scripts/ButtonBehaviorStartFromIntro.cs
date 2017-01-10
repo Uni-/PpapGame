@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ObjectBubblePop : MonoBehaviour
+public class ButtonBehaviorStartFromIntro : MonoBehaviour
 {
-    private float accDeltaTick;
-    private float nextGenTick;
-
-    [SerializeField]
-    GameObject PopBubble;
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
 
+    public void OnStartButtonClick()
+    {
+        SceneManager.LoadScene("Stage-1");
     }
 }

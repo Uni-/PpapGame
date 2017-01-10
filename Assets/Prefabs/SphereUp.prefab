@@ -22,13 +22,18 @@ GameObject:
   - component: {fileID: 33044852217625258}
   - component: {fileID: 135404203032168808}
   - component: {fileID: 23772846198249956}
+  - component: {fileID: 54933702677349662}
+  - component: {fileID: 114096530109133072}
+  - component: {fileID: 114685720092696642}
+  - component: {fileID: 114468892045111688}
+  - component: {fileID: 114560804727642110}
   m_Layer: 0
   m_Name: SphereUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4354706057286632
 Transform:
   m_ObjectHideFlags: 1
@@ -80,6 +85,65 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1820084528012382}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54933702677349662
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820084528012382}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114096530109133072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820084528012382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299b7f536666b4642b535d8c6ac181c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114468892045111688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820084528012382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa40655d9167dd47b01f68c9bace4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114560804727642110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820084528012382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29d4ca92f80ba145af5ef6b747869db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114685720092696642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820084528012382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ffa0007b227e1048bdb3e6be45855dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135404203032168808
 SphereCollider:
   m_ObjectHideFlags: 1
