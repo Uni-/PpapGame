@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandState : MonoBehaviour
+public class StateMgmtHand : MonoBehaviour
 {
     public enum Type
     {
@@ -33,17 +33,17 @@ public class HandState : MonoBehaviour
     {
     }
 
-    public void AddToHand(HandState.Type handType, TargetPropertySet targetPropertySet)
+    public void AddToHand(StateMgmtHand.Type handType, TargetPropertySet targetPropertySet)
     {
         switch (handType)
         {
-            case HandState.Type.Left:
+            case StateMgmtHand.Type.Left:
                 {
                     leftHand.Add(targetPropertySet);
                     LhText.text += targetPropertySet.ToString();
                 }
                 break;
-            case HandState.Type.Right:
+            case StateMgmtHand.Type.Right:
                 {
                     rightHand.Add(targetPropertySet);
                 }

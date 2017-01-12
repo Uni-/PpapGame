@@ -8,7 +8,7 @@ public class InputHandResponse : MonoBehaviour
     private GameObject sceneDynamicContainer;
 
     [SerializeField]
-    public HandState HandSystem;
+    public StateMgmtHand HandSystem;
 
     [SerializeField]
     public Material WhiteShader;
@@ -74,6 +74,6 @@ public class InputHandResponse : MonoBehaviour
         Debug.Log(pGameObject.GetComponent<TargetPropertySet>());
 
         TargetPropertySet targetPropertySet = pGameObject.GetComponent<TargetPropertySet>();
-        HandSystem.AddToHand(HandState.Type.Left, targetPropertySet);
+        HandSystem.AddToHand(StateMgmtHand.Type.Left, targetPropertySet);
     }
 }
