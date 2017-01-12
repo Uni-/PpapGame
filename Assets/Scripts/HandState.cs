@@ -18,10 +18,10 @@ public class HandState : MonoBehaviour
     [SerializeField]
     public UnityEngine.UI.Text RhText;
 
-    // Here, ObjectPropertySet is used as a object reference class
+    // Here, TargetPropertySet is used as a object reference class
 
-    private List<ObjectPropertySet> leftHand = new List<ObjectPropertySet>();
-    private List<ObjectPropertySet> rightHand = new List<ObjectPropertySet>();
+    private List<TargetPropertySet> leftHand = new List<TargetPropertySet>();
+    private List<TargetPropertySet> rightHand = new List<TargetPropertySet>();
 
     // Use this for initialization
     void Start()
@@ -33,19 +33,19 @@ public class HandState : MonoBehaviour
     {
     }
 
-    public void AddToHand(HandState.Type handType, ObjectPropertySet objectPropertySet)
+    public void AddToHand(HandState.Type handType, TargetPropertySet targetPropertySet)
     {
         switch (handType)
         {
             case HandState.Type.Left:
                 {
-                    leftHand.Add(objectPropertySet);
-                    LhText.text += objectPropertySet.ToString();
+                    leftHand.Add(targetPropertySet);
+                    LhText.text += targetPropertySet.ToString();
                 }
                 break;
             case HandState.Type.Right:
                 {
-                    rightHand.Add(objectPropertySet);
+                    rightHand.Add(targetPropertySet);
                 }
                 break;
             default:

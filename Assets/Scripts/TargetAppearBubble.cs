@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectAppearBubble : MonoBehaviour
+public class TargetAppearBubble : MonoBehaviour
 {
     private float accDeltaTick;
     private float nextGenTick;

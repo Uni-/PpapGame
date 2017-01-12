@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectMoveGravity : MonoBehaviour {
+public class TargetPropertySet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

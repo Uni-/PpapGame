@@ -71,9 +71,9 @@ public class InputHandResponse : MonoBehaviour
     void AddObjectToList(GameObject pGameObject)
     {
         Debug.Log(pGameObject);
-        Debug.Log(pGameObject.GetComponent<ObjectPropertySet>());
+        Debug.Log(pGameObject.GetComponent<TargetPropertySet>());
 
-        ObjectPropertySet objectPropertySet = pGameObject.GetComponent<ObjectPropertySet>();
-        HandSystem.AddToHand(HandState.Type.Left, objectPropertySet);
+        TargetPropertySet targetPropertySet = pGameObject.GetComponent<TargetPropertySet>();
+        HandSystem.AddToHand(HandState.Type.Left, targetPropertySet);
     }
 }

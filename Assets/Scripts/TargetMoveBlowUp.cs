@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectDisappear : MonoBehaviour {
+public class TargetMoveBlowUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

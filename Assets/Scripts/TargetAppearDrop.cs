@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectAppearDrop : MonoBehaviour
+public class TargetAppearDrop : MonoBehaviour
 {
     private float accDeltaTick;
     private float nextGenTick;
