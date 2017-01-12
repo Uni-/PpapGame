@@ -11,9 +11,7 @@ public class InputHandResponse : MonoBehaviour
     public HandState HandSystem;
 
     [SerializeField]
-    Material WhiteShader;
-    [SerializeField]
-    Material RedShader;
+    public Material WhiteShader;
 
     // Use this for initialization
     void Start()
@@ -41,9 +39,11 @@ public class InputHandResponse : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < Input.touchCount; i++)
+        // TODO: Using for (int i = 0; i < Input.touchCount; i++) and Input.GetTouch(i), Care exceptional touch cases
+
+        if (Input.touchCount != 0)
         {
-            Touch touch = Input.GetTouch(i);
+            Touch touch = Input.GetTouch(0);
             relativeInputCoordinates.Add(new Vector3(touch.position.x, touch.position.y));
             Debug.Log(touch.position.ToString());
         }
@@ -62,7 +62,7 @@ public class InputHandResponse : MonoBehaviour
             if (hitObjectExists)
             {
                 var hitGameObject = raycastHit.transform.gameObject;
-                hitGameObject.GetComponent<Renderer>().material = RedShader;
+                hitGameObject.GetComponent<Renderer>().material = WhiteShader;
                 AddObjectToList(hitGameObject);
             }
         }

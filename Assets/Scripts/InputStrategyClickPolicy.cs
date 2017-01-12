@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// this class is created for duct-tape first, refactoring later
 public class InputStrategyClickPolicy : MonoBehaviour {
 
 	// Use this for initialization

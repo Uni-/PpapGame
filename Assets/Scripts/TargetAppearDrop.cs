@@ -8,11 +8,12 @@ public class TargetAppearDrop : MonoBehaviour
     private float nextGenTick;
 
     [SerializeField]
-    UnityEngine.Object DropBubble;
+    public TargetGenerator targetGenerator;
 
     // Use this for initialization
     void Start()
     {
+        // TODO: remove this code when test ended
         GenerateBubble(5, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
         GenerateBubble(0, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
         GenerateBubble(-5, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
@@ -31,15 +32,17 @@ public class TargetAppearDrop : MonoBehaviour
 
     GameObject GenerateBubble(float dx, float dy, float dz)
     {
-        GameObject gameObject = (GameObject)Instantiate(DropBubble, new Vector3(0f, 15f, 0f), Quaternion.identity);
-        Vector3 localPosition = gameObject.transform.localPosition;
+        UnityEngine.Object dropTarget = ((IEnumerator<UnityEngine.Object>)(targetGenerator)).Current;
+        targetGenerator.MoveNext();
+        GameObject instGameObject = (GameObject)Instantiate(dropTarget, new Vector3(0f, 15f, 0f), Quaternion.identity);
+        Vector3 localPosition = instGameObject.transform.localPosition;
 
         localPosition.x += dx;
         localPosition.y += dy;
         localPosition.z += dz;
-        gameObject.transform.localPosition = localPosition;
-        gameObject.SetActive(true);
+        instGameObject.transform.localPosition = localPosition;
+        instGameObject.SetActive(true);
 
-        return gameObject;
+        return instGameObject;
     }
 }

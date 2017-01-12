@@ -7,9 +7,6 @@ public class TargetAppearBubble : MonoBehaviour
     private float accDeltaTick;
     private float nextGenTick;
 
-    [SerializeField]
-    GameObject PopBubble;
-
     // Use this for initialization
     void Start()
     {
