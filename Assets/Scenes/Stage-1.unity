@@ -278,26 +278,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4184872278433232, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.5499715
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184872278433232, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.444445
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184872278433232, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.444445
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184872278433232, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.5499715
-      objectReference: {fileID: 0}
-    - target: {fileID: 1802660649797808, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
   m_IsPrefabParent: 0
@@ -715,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1116,7 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1256,10 +1236,6 @@ Prefab:
     - target: {fileID: 4417160437648278, guid: 3eb6e5eba8894fd49a8af45ec0540daf, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965521839855106, guid: 3eb6e5eba8894fd49a8af45ec0540daf, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3eb6e5eba8894fd49a8af45ec0540daf, type: 2}
@@ -1662,7 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1745,7 +1721,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.9852941, g: 0.9852941, b: 0.9852941, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

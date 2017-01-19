@@ -102,6 +102,7 @@ public class InputHandStrategyClickPolicy : MonoBehaviour
         while (false);
 
         #region DUMP_positionalInputIndices
+        /*
         do
         {
             var dump_s = "";
@@ -127,6 +128,8 @@ public class InputHandStrategyClickPolicy : MonoBehaviour
             Debug.Log(dump_s);
         }
         while (false);
+        */
         #endregion
     }
+
 }
