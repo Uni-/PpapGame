@@ -40,12 +40,13 @@ public class StateMgmtHand : MonoBehaviour
             case StateMgmtHand.Type.Left:
                 {
                     leftHand.Add(targetPropertySet);
-                    LhText.text += targetPropertySet.ToString();
+                    LhText.text += targetPropertySet.gameObject.name + "\n";
                 }
                 break;
             case StateMgmtHand.Type.Right:
                 {
                     rightHand.Add(targetPropertySet);
+                    RhText.text += targetPropertySet.gameObject.name + "\n";
                 }
                 break;
             default:

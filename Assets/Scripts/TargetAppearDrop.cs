@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class TargetAppearDrop : MonoBehaviour
 {
-    private float accDeltaTick;
-    private float nextGenTick;
-
     [SerializeField]
     public TargetGenerator targetGenerator;
 
+    private float accDeltaTick;
+    private float nextGenTick;
+
+    private GameObject sceneDynamicContainer;
+    
     // Use this for initialization
     void Start()
     {
+        sceneDynamicContainer = GameObject.Find("SceneDynamic");
+
         // TODO: remove this code when test ended
         GenerateBubble(5, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
         GenerateBubble(0, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
@@ -40,6 +44,7 @@ public class TargetAppearDrop : MonoBehaviour
         localPosition.x += dx;
         localPosition.y += dy;
         localPosition.z += dz;
+        instGameObject.transform.parent = sceneDynamicContainer.transform;
         instGameObject.transform.localPosition = localPosition;
         instGameObject.SetActive(true);
 

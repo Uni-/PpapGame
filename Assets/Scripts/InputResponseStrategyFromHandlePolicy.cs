@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetMoveBlowUp : MonoBehaviour
+// this class is created for duct-tape first, refactoring later
+public class InputResponseStrategyFromHandlePolicy : MonoBehaviour
 {
 
     // Use this for initialization

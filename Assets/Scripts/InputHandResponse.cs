@@ -1,79 +1,162 @@
-﻿using System.Collections;
+﻿using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputHandResponse : MonoBehaviour
 {
+    [SerializeField]
+    Material WhiteShader;
+
+    // These all components should be above the referencing InputHandResponse component in Editor.
+    [SerializeField]
+    InputHandStrategyClickPolicy ClickPolicy;
+    [SerializeField]
+    InputHandStrategyTouchPolicy TouchPolicy;
+    [SerializeField]
+    StateMgmtHand HandSystem;
+
     private Camera mainCamera;
     private GameObject sceneDynamicContainer;
-
-    [SerializeField]
-    public StateMgmtHand HandSystem;
-
-    [SerializeField]
-    public Material WhiteShader;
+    private int inputCoordsPrevCount = 0;
+    private Vector3? firstHandStartCoord = null;
+    private Vector3? secondHandStartCoord = null;
+    private bool isFirstHandSet
+    {
+        get
+        {
+            return firstHandStartCoord != null;
+        }
+        set
+        {
+            if (value == true) throw new System.InvalidOperationException();
+            firstHandStartCoord = null;
+        }
+    }
+    private bool isSecondHandSet
+    {
+        get
+        {
+            return secondHandStartCoord != null;
+        }
+        set
+        {
+            if (value == true) throw new System.InvalidOperationException();
+            secondHandStartCoord = null;
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
         mainCamera = Camera.main;
-        Camera[] allCameras = Camera.allCameras;
-
+        //Camera[] allCameras = Camera.allCameras;
         sceneDynamicContainer = GameObject.Find("SceneDynamic");
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<Vector3> relativeInputCoordinates = new List<Vector3>();
+        List<Vector3?> inputCoords = ClickPolicy.InputPositionValues;
 
-        for (int i = 0; i < 3; i++)
+        if (inputCoordsPrevCount == 0 && inputCoords.Count > 0)
         {
-            bool mouse = Input.GetMouseButton(i);
-            Vector3 position = Input.mousePosition;
-            if (mouse)
+            System.Diagnostics.Debug.Assert(inputCoords[0].HasValue);
+            UnityEngine.Debug.Assert(inputCoords[0].HasValue);
+
+            SetFirstHand(inputCoords[0].Value);
+        }
+        else if (inputCoordsPrevCount == 1 && inputCoords.Count > 1)
+        {
+            if (inputCoords[0].HasValue)
             {
-                relativeInputCoordinates.Add(position);
-                Debug.Log(position.ToString());
-                break;
+                System.Diagnostics.Debug.Assert(inputCoords[1].HasValue);
+                UnityEngine.Debug.Assert(inputCoords[1].HasValue);
+
+                SetSecondHand(inputCoords[1].Value);
             }
         }
-
-        // TODO: Using for (int i = 0; i < Input.touchCount; i++) and Input.GetTouch(i), Care exceptional touch cases
-
-        if (Input.touchCount != 0)
+        else if (inputCoordsPrevCount > 1 && inputCoords.Count > inputCoordsPrevCount)
         {
-            Touch touch = Input.GetTouch(0);
-            relativeInputCoordinates.Add(new Vector3(touch.position.x, touch.position.y));
-            Debug.Log(touch.position.ToString());
+            // do nothing
         }
-
-        for (int i = 0; i < sceneDynamicContainer.transform.childCount; i++)
+        else if (inputCoords.Count == 0)
         {
-            GameObject gameObject = sceneDynamicContainer.transform.GetChild(i).gameObject;
+            UnsetHands();
         }
-
-        foreach (Vector3 vectorItem in relativeInputCoordinates)
+        else
         {
-            Ray ray = mainCamera.ScreenPointToRay(vectorItem);
-            ray.origin = mainCamera.transform.position;
-            RaycastHit raycastHit;
-            bool hitObjectExists = Physics.Raycast(ray.origin, ray.direction, out raycastHit);
-            if (hitObjectExists)
+            // inputCoordsPrevCount == inputCoords.Count
+            // do nothing
+        }
+        inputCoordsPrevCount = inputCoords.Count;
+
+        if (inputCoords.Count > 0 && inputCoords[0].HasValue)
+        {
+            CareFirstHand(inputCoords[0].Value);
+
+            if (inputCoords.Count > 1 && inputCoords[1].HasValue)
             {
-                var hitGameObject = raycastHit.transform.gameObject;
-                hitGameObject.GetComponent<Renderer>().material = WhiteShader;
-                AddObjectToList(hitGameObject);
+                CareBothHand(inputCoords[0].Value, inputCoords[1].Value);
             }
         }
     }
 
-    void AddObjectToList(GameObject pGameObject)
+    void AddObjectToList(Vector3 handCoord, GameObject pGameObject)
     {
-        Debug.Log(pGameObject);
-        Debug.Log(pGameObject.GetComponent<TargetPropertySet>());
+        //Debug.Log(pGameObject.GetComponent<TargetPropertySet>());
 
         TargetPropertySet targetPropertySet = pGameObject.GetComponent<TargetPropertySet>();
-        HandSystem.AddToHand(StateMgmtHand.Type.Left, targetPropertySet);
+        StateMgmtHand.Type type;
+        if (handCoord.x < Screen.width / 2)
+            type = StateMgmtHand.Type.Left;
+        else
+            type = StateMgmtHand.Type.Right;
+
+        HandSystem.AddToHand(type, targetPropertySet);
+    }
+
+    void CareFirstHand(Vector3 firstHandCoord)
+    {
+        if (!isFirstHandSet)
+        {
+            return;
+        }
+
+        Ray ray = mainCamera.ScreenPointToRay(firstHandCoord);
+        ray.origin = mainCamera.transform.position;
+        RaycastHit raycastHit;
+
+        bool hitObjectExists = Physics.Raycast(ray.origin, ray.direction, out raycastHit);
+        if (hitObjectExists)
+        {
+            var hitGameObject = raycastHit.transform.gameObject;
+            hitGameObject.GetComponent<Renderer>().material = WhiteShader;
+            AddObjectToList(firstHandStartCoord.Value, hitGameObject);
+            UnsetHands();
+        }
+    }
+
+    void CareBothHand(Vector2 firstHandStartCoord, Vector3 secondHandStartCoord)
+    {
+        if (!isSecondHandSet)
+        {
+            return;
+        }
+    }
+
+    void SetFirstHand(Vector3 firstHandCurrCoord)
+    {
+        firstHandStartCoord = firstHandCurrCoord;
+    }
+
+    void SetSecondHand(Vector3 secondHandCurrCoord)
+    {
+        secondHandStartCoord = secondHandCurrCoord;
+    }
+
+    void UnsetHands()
+    {
+        isFirstHandSet = false;
+        isSecondHandSet = false;
     }
 }
