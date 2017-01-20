@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public delegate void HandAddEvent(HandAddEventArgs args);
+
+public struct HandAddEventArgs
+{
+    public String LhT;
+    public String RhT;
+}
+
 public class StateMgmtHand : MonoBehaviour
 {
     public enum Type
@@ -12,6 +21,9 @@ public class StateMgmtHand : MonoBehaviour
         Right,
         Tee,
     }
+    
+
+    public HandAddEvent Addhandevent;
 
     [SerializeField]
     public UnityEngine.UI.Text LhText;
@@ -40,17 +52,22 @@ public class StateMgmtHand : MonoBehaviour
             case StateMgmtHand.Type.Left:
                 {
                     leftHand.Add(targetPropertySet);
-                    LhText.text += targetPropertySet.gameObject.name + "\n";
+                    LhText.text += targetPropertySet.gameObject.name.Replace("(Clone)","").Replace("Target1","");
                 }
-                break;
+                break;  
             case StateMgmtHand.Type.Right:
                 {
                     rightHand.Add(targetPropertySet);
-                    RhText.text += targetPropertySet.gameObject.name + "\n";
+                    RhText.text += targetPropertySet.gameObject.name.Replace("(Clone)", "").Replace("Target1", "");
                 }
                 break;
             default:
                 throw new NotImplementedException();
         }
+
+        HandAddEventArgs args = new HandAddEventArgs();
+        args.LhT = LhText.text;
+        args.RhT = RhText.text;
+        Addhandevent(args);
     }
 }
