@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetPropertySet : MonoBehaviour
 {
+    [SerializeField]
+    public string Name;
 
     // Use this for initialization
     void Start()
