@@ -18,6 +18,13 @@ public class InputHandResponse : MonoBehaviour
     private Camera mainCamera;
     private GameObject sceneDynamicContainer;
     private int inputCoordsPrevCount = 0;
+    public int InputCoordsPrevCount
+    {
+        get
+        {
+            return inputCoordsPrevCount;
+        }
+    }
     private Vector3? firstHandStartCoord = null;
     private Vector3? secondHandStartCoord = null;
     private bool isFirstHandSet
@@ -133,6 +140,7 @@ public class InputHandResponse : MonoBehaviour
             hitGameObject.GetComponent<Renderer>().material = WhiteShader;
             AddObjectToList(firstHandStartCoord.Value, hitGameObject);
             UnsetHands();
+            GotObject(hitGameObject);
         }
     }
 
@@ -158,5 +166,11 @@ public class InputHandResponse : MonoBehaviour
     {
         isFirstHandSet = false;
         isSecondHandSet = false;
+    }
+
+    void GotObject(GameObject hitGameObject)
+    {
+        hitGameObject.SetActive(false);
+        hitGameObject.GetComponent<TargetDisappear>().DestroySelf();
     }
 }

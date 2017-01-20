@@ -15,7 +15,12 @@ public class TargetDisappear : MonoBehaviour
         Vector3 view = Camera.main.WorldToScreenPoint(transform.position);
         if(view.y < -250)
         {
-            Destroy(this.gameObject);
+            DestroySelf();
         }
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(this.gameObject);
     }
 }

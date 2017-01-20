@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void HandItemEvent(HandItemEventArgs args);
 
-public delegate void HandAddEvent(HandAddEventArgs args);
-
-public struct HandAddEventArgs
+public struct HandItemEventArgs
 {
+    public HandItemEventType type;
+
+    public StateMgmtHand.Type side;
+    public string entered;
+
     public string LhT;
     public string RhT;
+    public string Purged;
 }
 
 public class StateMgmtHand : MonoBehaviour
@@ -23,7 +28,7 @@ public class StateMgmtHand : MonoBehaviour
     }
     
 
-    public HandAddEvent Addhandevent;
+    public HandItemEvent OnHandItemChange;
     private string LhText = "";
     private string RhText = "";
 
@@ -103,7 +108,7 @@ public class StateMgmtHand : MonoBehaviour
             case StateMgmtHand.Type.Left:
                 {
                     leftHand.Add(targetPropertySet);
-                     LhText += targetPropertySet.gameObject.name.Replace("(Clone)","").Replace("Target1","");
+                    LhText += targetPropertySet.gameObject.name.Replace("(Clone)","").Replace("Target1","");
 
                     if (leftHand.Count > 4)
                     {
@@ -122,6 +127,7 @@ public class StateMgmtHand : MonoBehaviour
                 {
                     rightHand.Add(targetPropertySet);
                     RhText += targetPropertySet.gameObject.name.Replace("(Clone)", "").Replace("Target1", "");
+
                     if (rightHand.Count > 4)
                     {
                         RhMoreText.text = "+" + (rightHand.Count - 4).ToString();
@@ -139,10 +145,18 @@ public class StateMgmtHand : MonoBehaviour
             default:
                 throw new NotImplementedException();
         }
-        HandAddEventArgs args = new HandAddEventArgs();
-        args.LhT = LhText;
-        args.RhT = RhText;
-        Addhandevent(args);
+
+        HandItemEventArgs args = new HandItemEventArgs()
+        {
+            type = HandItemEventType.Add,
+            side = handType,
+            entered = targetPropertySet.Name,
+            LhT = LhText,
+            RhT = RhText
+        };
+
+        if (OnHandItemChange != null)
+            OnHandItemChange(args);
     }
 
     public void PurgeLh()
@@ -153,7 +167,22 @@ public class StateMgmtHand : MonoBehaviour
         }
         LhNonceImage.gameObject.SetActive(false);
 
+        string purged_string = LhText;
+        LhText = "";
         leftHand.Clear();
+        
+        HandItemEventArgs args = new HandItemEventArgs()
+        {
+            type = HandItemEventType.Purge,
+            side = Type.Left,
+            entered = "",
+            LhT = LhText,
+            RhT = RhText,
+            Purged = purged_string
+        };
+
+        if (OnHandItemChange != null)
+            OnHandItemChange(args);
     }
 
     public void PurgeRh()
@@ -164,6 +193,21 @@ public class StateMgmtHand : MonoBehaviour
         }
         RhNonceImage.gameObject.SetActive(false);
 
+        string purged_string = RhText;
+        RhText = "";
         rightHand.Clear();
+
+        HandItemEventArgs args = new HandItemEventArgs()
+        {
+            type = HandItemEventType.Purge,
+            side = Type.Right,
+            entered = "",
+            LhT = LhText,
+            RhT = RhText,
+            Purged = purged_string
+        };
+
+        if (OnHandItemChange != null)
+            OnHandItemChange(args);
     }
 }

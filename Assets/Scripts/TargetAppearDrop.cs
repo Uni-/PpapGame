@@ -17,10 +17,12 @@ public class TargetAppearDrop : MonoBehaviour
     {
         sceneDynamicContainer = GameObject.Find("SceneDynamic");
 
+#if false
         // TODO: remove this code when test ended
         GenerateBubble(5, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
         GenerateBubble(0, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
         GenerateBubble(-5, -15, 0).GetComponent<Rigidbody>().isKinematic = true;
+#endif
     }
 
     // Update is called once per frame
