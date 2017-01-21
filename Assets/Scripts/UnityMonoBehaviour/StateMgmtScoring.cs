@@ -7,8 +7,8 @@ public class StateMgmtScoring : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Text ScoreText;
 
-    private int savedscore=0;
-    private int handscore=0;
+    private int savedscore = 0;
+    private int handscore = 0;
 
     private Dictionary<string, int> combo = new Dictionary<string, int>()
     {
@@ -32,12 +32,12 @@ public class StateMgmtScoring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = (savedscore + handscore).ToString();  
+        ScoreText.text = (savedscore + handscore).ToString();
     }
 
     void ScoreCal(HandItemEventArgs args)
     {
-        switch(args.eventType)
+        switch (args.eventType)
         {
             case HandItemEventType.Add:
                 // recompute handscore

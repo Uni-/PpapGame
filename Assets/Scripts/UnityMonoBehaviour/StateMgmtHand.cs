@@ -59,7 +59,7 @@ public class StateMgmtHand : MonoBehaviour
 
     private List<TargetPropertySet> leftHand = new List<TargetPropertySet>();
     private List<TargetPropertySet> rightHand = new List<TargetPropertySet>();
-    
+
     private Camera mainCamera;
 
     private string LhText = "";
@@ -199,7 +199,7 @@ public class StateMgmtHand : MonoBehaviour
             case HandType.Left:
                 {
                     leftHand.Add(targetPropertySet);
-                    LhText += targetPropertySet.gameObject.name.Replace("(Clone)","").Replace("Target1","");
+                    LhText += targetPropertySet.gameObject.name.Replace("(Clone)", "").Replace("Target1", "");
 
                     if (leftHand.Count > 4)
                     {
@@ -213,7 +213,7 @@ public class StateMgmtHand : MonoBehaviour
                         lhImage.gameObject.SetActive(true);
                     }
                 }
-                break;  
+                break;
             case HandType.Right:
                 {
                     rightHand.Add(targetPropertySet);
@@ -261,7 +261,7 @@ public class StateMgmtHand : MonoBehaviour
         string purged_string = LhText;
         LhText = "";
         leftHand.Clear();
-        
+
         HandItemEventArgs args = new HandItemEventArgs()
         {
             eventType = HandItemEventType.Purge,
