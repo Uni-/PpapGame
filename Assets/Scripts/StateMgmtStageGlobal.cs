@@ -26,7 +26,7 @@ public class StateMgmtStageGlobal : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GameObject.Find("SceneStatic").GetComponent<StateMgmtHand>().OnHandItemChange += ScoreCal;
+        gameObject.GetComponent<StateMgmtHand>().OnHandItemChange += ScoreCal;
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class StateMgmtStageGlobal : MonoBehaviour
 
     void ScoreCal(HandItemEventArgs args)
     {
-        switch(args.type)
+        switch(args.eventType)
         {
             case HandItemEventType.Add:
                 // recompute handscore

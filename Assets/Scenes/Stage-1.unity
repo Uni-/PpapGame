@@ -257,10 +257,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1802660649797808, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a36b784df9f8b6b47b8a92795564fec9, type: 2}
   m_IsPrefabParent: 0
@@ -465,7 +461,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1422812634}
+      - m_Target: {fileID: 1623854648}
         m_MethodName: PurgeRh
         m_Mode: 1
         m_Arguments:
@@ -965,9 +961,8 @@ GameObject:
   m_Component:
   - component: {fileID: 772408454}
   - component: {fileID: 772408458}
-  - component: {fileID: 772408457}
   - component: {fileID: 772408455}
-  - component: {fileID: 772408459}
+  - component: {fileID: 772408456}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -984,7 +979,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1623854646}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -999,11 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2310081da1a8cc1468ccf2caf6d63805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteShader: {fileID: 2100000, guid: 33498dc589dbdb24caa1d16cd721daab, type: 2}
-  ClickPolicy: {fileID: 772408458}
-  TouchPolicy: {fileID: 772408457}
-  HandSystem: {fileID: 1422812634}
---- !u!114 &772408457
+--- !u!114 &772408456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1011,9 +1003,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 772408453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb229d61b4499714e8006ea179229cc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f57aa4631a75747aad6445b549271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HandSystem: {fileID: 1623854648}
+  screenInputTrailer: {fileID: 1151338199}
 --- !u!114 &772408458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,18 +1019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ebc221d3b6ae04da6ad366f2fb8431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &772408459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 772408453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49bf7e597977e2438aee0721de279a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ps: {fileID: 1151338198}
 --- !u!1 &790815607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1422812634}
+      - m_Target: {fileID: 1623854648}
         m_MethodName: PurgeLh
         m_Mode: 1
         m_Arguments:
@@ -1663,8 +1645,9 @@ GameObject:
   - component: {fileID: 1151338196}
   - component: {fileID: 1151338198}
   - component: {fileID: 1151338197}
+  - component: {fileID: 1151338199}
   m_Layer: 0
-  m_Name: InputTrailer
+  m_Name: ScreenInputTrailer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1744,7 +1727,7 @@ ParticleSystem:
   speed: 1
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -1788,7 +1771,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -672230324
+  randomSeed: -1539435693
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2371,10 +2354,10 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.49244714
-          value: 0.9999999
-          inSlope: 0
-          outSlope: 0
+          time: 0.499992
+          value: 1
+          inSlope: -0.0032782555
+          outSlope: -0.0032782555
           tangentMode: 0
         - serializedVersion: 2
           time: 1
@@ -4376,6 +4359,25 @@ ParticleSystem:
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
+--- !u!114 &1151338199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151338195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49bf7e597977e2438aee0721de279a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WhiteCircle: {fileID: 2800000, guid: 08975f3d88149c9499312b2dd43d774f, type: 3}
+  RedCircle: {fileID: 2800000, guid: 9189965bed8292e4c90e6c9e4275806f, type: 3}
+  GreenCircle: {fileID: 2800000, guid: f8edaf9213bc1844581b3b4f92fa3d72, type: 3}
+  BlueCircle: {fileID: 2800000, guid: e4bdf153de4f1854d91948d33f5bad4c, type: 3}
+  CyanCircle: {fileID: 2800000, guid: a7486145b05015d47ad68ee74205df39, type: 3}
+  MagentaCircle: {fileID: 2800000, guid: 9e678cadb11bc6248a1eb5980c8a4bc2, type: 3}
+  YellowCircle: {fileID: 2800000, guid: d9e9eb9c05285ad44941d7311a92098f, type: 3}
+  BlackCircle: {fileID: 2800000, guid: 59e25ba7b46799e44b558852fe46896e, type: 3}
 --- !u!1 &1195453853
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,8 +4564,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1422812633}
-  - component: {fileID: 1422812634}
-  - component: {fileID: 1422812635}
   m_Layer: 0
   m_Name: SceneStatic
   m_TagString: Untagged
@@ -4586,40 +4586,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422812634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1422812632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b917aa5cd432a479cca1e2eb49097e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LhPurgeButton: {fileID: 986287412}
-  LhImages: {fileID: 1830433136}
-  LhNonceImage: {fileID: 522039670}
-  LhMoreText: {fileID: 1044917835}
-  RhPurgeButton: {fileID: 236242562}
-  RhImages: {fileID: 1970843209}
-  RhNonceImage: {fileID: 1089949869}
-  RhMoreText: {fileID: 1195453855}
-  Target1P: {fileID: 2800000, guid: 1015f4ad228417a40a190972e105ac99, type: 3}
-  Target1Ap: {fileID: 2800000, guid: 633a989bd9231ce46af1327a891cfa7a, type: 3}
-  Target1Pap: {fileID: 2800000, guid: 5b54579f8266f6e4b9f248973f8fb5e5, type: 3}
---- !u!114 &1422812635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1422812632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3bad9fb94c278d469a7bc707794a6ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScoreText: {fileID: 1794940906}
 --- !u!1 &1485800996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4857,6 +4823,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1623854645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1623854646}
+  - component: {fileID: 1623854648}
+  - component: {fileID: 1623854647}
+  m_Layer: 0
+  m_Name: StateManagers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1623854646
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1623854645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 772408454}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1623854647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1623854645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bad9fb94c278d469a7bc707794a6ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreText: {fileID: 1794940906}
+--- !u!114 &1623854648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1623854645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b917aa5cd432a479cca1e2eb49097e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LhPurgeButton: {fileID: 986287412}
+  LhImages: {fileID: 1830433136}
+  LhNonceImage: {fileID: 522039670}
+  LhMoreText: {fileID: 1044917835}
+  RhPurgeButton: {fileID: 236242562}
+  RhImages: {fileID: 1970843209}
+  RhNonceImage: {fileID: 1089949869}
+  RhMoreText: {fileID: 1195453855}
+  Target1P: {fileID: 2800000, guid: 1015f4ad228417a40a190972e105ac99, type: 3}
+  Target1Ap: {fileID: 2800000, guid: 633a989bd9231ce46af1327a891cfa7a, type: 3}
+  Target1Pap: {fileID: 2800000, guid: 5b54579f8266f6e4b9f248973f8fb5e5, type: 3}
 --- !u!1 &1626222296
 GameObject:
   m_ObjectHideFlags: 0
