@@ -10,7 +10,14 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
     [SerializeField]
     ScreenInputTrailer screenInputTrailer;
 
+    [SerializeField]
+    Material lhTrailMaterial;
+    [SerializeField]
+    Material rhTrailMaterial;
+
     private int inputCoordsPrevCount = 0;
+    private Vector3? firstHandStartCoord = null;
+    private Vector3? secondHandStartCoord = null;
 
     public List<Vector3?> InputCoords = new List<Vector3?>();
 
@@ -34,6 +41,7 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
             UnityEngine.Debug.Assert(InputCoords[0].HasValue);
 
             HandSystem.SetFirstHandStart(InputCoords[0].Value);
+            firstHandStartCoord = InputCoords[0].Value;
         }
         else if (inputCoordsPrevCount == 1 && InputCoords.Count > 1)
         {
@@ -43,6 +51,7 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
                 UnityEngine.Debug.Assert(InputCoords[1].HasValue);
 
                 HandSystem.SetSecondHandStart(InputCoords[1].Value);
+                secondHandStartCoord = InputCoords[1].Value;
             }
         }
         else if (inputCoordsPrevCount > 1 && InputCoords.Count > inputCoordsPrevCount)
@@ -73,7 +82,7 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
 
     private void CareScreenTrailer()
     {
-        if (inputCoordsPrevCount != 0)
+        if (inputCoordsPrevCount > 0)
         {
             Vector3 tmp = Input.mousePosition;
             tmp.z = Camera.main.transform.localPosition.z * -1f;
@@ -81,6 +90,15 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
             v.z = 0f;
             screenInputTrailer.gameObject.transform.localPosition = v;
             screenInputTrailer.TurnOn(v);
+
+            if (firstHandStartCoord.Value.x < Screen.width / 2)
+            {
+                screenInputTrailer.SetMaterial(lhTrailMaterial);
+            }
+            else
+            {
+                screenInputTrailer.SetMaterial(rhTrailMaterial);
+            }
         }
         else
         {

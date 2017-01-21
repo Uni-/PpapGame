@@ -32,4 +32,9 @@ public class ScreenInputTrailer : MonoBehaviour
         gameObject.SetActive(false);
         Ps.Stop();
     }
+
+    public void SetMaterial(Material material)
+    {
+        Ps.gameObject.GetComponent<Renderer>().material = material; ;
+    }
 }

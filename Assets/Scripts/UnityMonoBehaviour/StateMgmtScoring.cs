@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMgmtStageGlobal : MonoBehaviour
+public class StateMgmtScoring : MonoBehaviour
 {
     [SerializeField]
     UnityEngine.UI.Text ScoreText;
@@ -32,7 +32,7 @@ public class StateMgmtStageGlobal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = "Score : ".Insert(8, ""+(savedscore + handscore));  
+        ScoreText.text = (savedscore + handscore).ToString();  
     }
 
     void ScoreCal(HandItemEventArgs args)
