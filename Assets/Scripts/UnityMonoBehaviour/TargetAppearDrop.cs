@@ -5,7 +5,10 @@ using UnityEngine;
 public class TargetAppearDrop : MonoBehaviour
 {
     [SerializeField]
-    public TargetGenerator targetGenerator;
+    TargetGenerator targetGenerator;
+
+    public bool IsDropping;
+    private bool prevIsDropping;
 
     private float accDeltaTick;
     private float nextGenTick;
@@ -15,6 +18,7 @@ public class TargetAppearDrop : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        prevIsDropping = IsDropping = true;
         sceneDynamicContainer = GameObject.Find("SceneDynamic");
 
 #if false
@@ -28,6 +32,24 @@ public class TargetAppearDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsDropping)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = true;
+            }
+            return;
+        }
+        else if (!IsDropping)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = true;
+            }
+            return;
+        }
+        prevIsDropping = IsDropping;
+
         accDeltaTick += Time.deltaTime;
         if (nextGenTick < accDeltaTick)
         {
