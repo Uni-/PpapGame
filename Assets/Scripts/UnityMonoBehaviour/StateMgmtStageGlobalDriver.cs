@@ -10,7 +10,7 @@ public class StateMgmtStageGlobalDriver : MonoBehaviour
     private StateMgmtTimer TimerStateManager;
     private StateMgmtScreen ScreenStateManager;
 
-    public float sceneStartTime;
+    private float sceneStartTime;
 
     public const int CountdownDuration = 3;
     public const int PlayDuration = 40;

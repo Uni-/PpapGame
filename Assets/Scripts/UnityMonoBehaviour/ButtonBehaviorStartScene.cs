@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonBehaviorStartScene : MonoBehaviour
 {
     [SerializeField]
-    string NextSceneName;
+    string SceneName;
 
     // Use this for initialization
     void Start()
@@ -17,6 +17,6 @@ public class ButtonBehaviorStartScene : MonoBehaviour
 
     public void OnStartButtonClick()
     {
-        SceneManager.LoadScene(NextSceneName);
+        SceneManager.LoadScene(SceneName);
     }
 }

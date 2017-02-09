@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ScreenInputTrailer : MonoBehaviour
 {
-    [SerializeField]
-    Texture WhiteCircle, RedCircle, GreenCircle, BlueCircle, CyanCircle, MagentaCircle, YellowCircle, BlackCircle;
-
-    private ParticleSystem Ps;
+    private ParticleSystem ps;
 
     // Use this for initialization
     void Start()
     {
-        Ps = gameObject.GetComponent<ParticleSystem>();
+        ps = gameObject.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -24,17 +21,17 @@ public class ScreenInputTrailer : MonoBehaviour
     {
         gameObject.SetActive(true);
         gameObject.transform.localPosition = v;
-        Ps.Play();
+        ps.Play();
     }
 
     public void TurnOff()
     {
         gameObject.SetActive(false);
-        Ps.Stop();
+        ps.Stop();
     }
 
     public void SetMaterial(Material material)
     {
-        Ps.gameObject.GetComponent<Renderer>().material = material; ;
+        ps.gameObject.GetComponent<Renderer>().material = material;
     }
 }

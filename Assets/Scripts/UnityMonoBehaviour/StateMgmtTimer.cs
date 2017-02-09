@@ -11,7 +11,8 @@ public class StateMgmtTimer : MonoBehaviour
 
     float timeStarted, timeLeft;
 
-    public bool GameEnd = false;
+    private bool gameEnd = false;
+    public bool GameEnd { get { return gameEnd; } }
 
     // Use this for initialization
     void Start()
@@ -23,7 +24,7 @@ public class StateMgmtTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameEnd == false)
+        if (gameEnd == false)
         {
             float f = timeLeft - (Time.time - timeStarted);
             if (f < 0) f = 0;
@@ -32,7 +33,7 @@ public class StateMgmtTimer : MonoBehaviour
 
             if (f == 0f)
             {
-                GameEnd = true;
+                gameEnd = true;
             }
         }
     }

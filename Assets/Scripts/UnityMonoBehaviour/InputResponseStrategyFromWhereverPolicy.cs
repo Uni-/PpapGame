@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// this class is created for duct-tape first, refactoring later
 public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
 {
     [SerializeField]
-    StateMgmtHand HandSystem;
+    StateMgmtHand HandSystem = null;
     [SerializeField]
-    ScreenInputTrailer screenInputTrailer;
-
+    ScreenInputTrailer ScreenInputTrailerLh = null;
     [SerializeField]
-    Material lhTrailMaterial;
-    [SerializeField]
-    Material rhTrailMaterial;
+    ScreenInputTrailer ScreenInputTrailerRh = null;
 
     private int inputCoordsPrevCount = 0;
     private Vector3? firstHandStartCoord = null;
@@ -88,21 +84,22 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
             tmp.z = Camera.main.transform.localPosition.z * -1f;
             Vector3 v = Camera.main.ScreenToWorldPoint(tmp);
             v.z = 0f;
-            screenInputTrailer.gameObject.transform.localPosition = v;
-            screenInputTrailer.TurnOn(v);
 
             if (firstHandStartCoord.Value.x < Screen.width / 2)
             {
-                screenInputTrailer.SetMaterial(lhTrailMaterial);
+                ScreenInputTrailerLh.gameObject.transform.localPosition = v;
+                ScreenInputTrailerLh.TurnOn(v);
             }
             else
             {
-                screenInputTrailer.SetMaterial(rhTrailMaterial);
+                ScreenInputTrailerRh.gameObject.transform.localPosition = v;
+                ScreenInputTrailerRh.TurnOn(v);
             }
         }
         else
         {
-            screenInputTrailer.TurnOff();
+            ScreenInputTrailerLh.TurnOff();
+            ScreenInputTrailerRh.TurnOff();
         }
     }
 }
