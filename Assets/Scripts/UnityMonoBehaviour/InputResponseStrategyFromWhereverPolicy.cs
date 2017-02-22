@@ -80,9 +80,9 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
     {
         if (inputCoordsPrevCount > 0)
         {
-            Vector3 tmp = Input.mousePosition;
-            tmp.z = Camera.main.transform.localPosition.z * -1f;
-            Vector3 v = Camera.main.ScreenToWorldPoint(tmp);
+            Vector3 tmp1 = Input.mousePosition;
+            tmp1.z = Camera.main.transform.localPosition.z * -1f;
+            Vector3 v = Camera.main.ScreenToWorldPoint(tmp1);
             v.z = 0f;
 
             if (firstHandStartCoord.Value.x < Screen.width / 2)
@@ -94,6 +94,25 @@ public class InputResponseStrategyFromWhereverPolicy : MonoBehaviour
             {
                 ScreenInputTrailerRh.gameObject.transform.localPosition = v;
                 ScreenInputTrailerRh.TurnOn(v);
+            }
+
+            if (inputCoordsPrevCount > 1)
+            {
+                Vector3 tmp2 = Input.mousePosition;
+                tmp2.z = Camera.main.transform.localPosition.z * -1f;
+                Vector3 u = Camera.main.ScreenToWorldPoint(tmp2);
+                u.z = 0f;
+
+                if (secondHandStartCoord.Value.x < Screen.width / 2)
+                {
+                    ScreenInputTrailerLh.gameObject.transform.localPosition = u;
+                    ScreenInputTrailerLh.TurnOn(v);
+                }
+                else
+                {
+                    ScreenInputTrailerRh.gameObject.transform.localPosition = u;
+                    ScreenInputTrailerRh.TurnOn(v);
+                }
             }
         }
         else
